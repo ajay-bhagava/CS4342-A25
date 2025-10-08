@@ -61,3 +61,24 @@ y_pred = lgbm.predict(X_test)
 print("LGBM Classifier")
 evaluate(y_test, y_pred)
 print("---------")
+
+# Feature Importance
+importances = classifier.feature_importances_
+indices = np.argsort(importances)[::-1]
+
+feature_names = df.columns[:-1]
+print("\nFeature Importances:")
+for idx in indices:
+    print(f"{feature_names[idx]}: {importances[idx]:.4f}")
+
+# Plot feature importances  
+top_n = 8
+top_indices = indices[:top_n]
+
+plt.figure(figsize=(8,6))
+plt.title(f'Top {top_n} Feature Importances')
+plt.bar(range(top_n), importances[top_indices], align='center')
+plt.xticks(range(top_n), feature_names[top_indices], rotation=45)
+plt.tight_layout()
+plt.show()
+
