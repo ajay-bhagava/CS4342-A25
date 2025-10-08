@@ -10,6 +10,30 @@ import numpy as np
 
 sns.set(font_scale=1.25)
 
+def plot_features(df):
+    plt.style.use("seaborn-v0_8")
+    # 2 features, so use a 5x4 grid
+    for i, col in enumerate(df.columns):
+        # New figure for each feature
+        plt.figure(str(col))
+        max_val = df[col].max()
+        min_val = df[col].min()
+
+        # fix bins for likert features (0-5)
+        bins=None
+        if max_val <= 5:
+            bins = np.arange(min_val, max_val+2) - 0.5
+        _,bins,p = plt.hist(df[col], bins)
+        plt.title(f"Distribution of {col}")
+        plt.ylabel("Frequency")
+        plt.xlabel(str(col))
+
+        # Fix ticks for likert features (0-5)
+        if max_val <= 5:
+            plt.xticks([s.get_x() + s.get_width()/2 for s in p])
+        
+
+
 def evaluate(y_test, y_pred, model_name):
     # Get class labels for confusion matrix
     class_labels = sorted(y_test.unique().tolist())
@@ -41,6 +65,7 @@ df = pd.read_csv(r'StressLevelDataset.csv')
 
 # Features
 X = df.drop(["stress_level"], axis=1)
+# plot_features(X)
 
 # Data Labels
 y = df["stress_level"].astype("category")
@@ -65,7 +90,7 @@ evaluate(y_test, y_pred, "Random Forest")
 print("---------")
 
 # LGBM Classsifier
-lgbm = LGBMClassifier(nestimators=100, random_state=42, verbosity=-1)
+lgbm = LGBMClassifier(n_estimators=100, random_state=42, verbosity=-1)
 lgbm.fit(X_train, y_train)
 y_pred = lgbm.predict(X_test)
 print("LGBM Classifier")
