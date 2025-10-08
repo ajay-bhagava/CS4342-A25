@@ -10,7 +10,8 @@ This project focuses on predicting student stress levels using machine learning 
 
 ## Dataset
 
-We use the `StressLevelDataset.csv` which contains 21 features related to student well-being and academic performance:
+Kaggle Dataset: https://www.kaggle.com/datasets/mdsultanulislamovi/student-stress-monitoring-datasets
+We use the `StressLevelDataset.csv` dataset which contains 20 features related to student well-being and academic performance:
 
 ### Features:
 
@@ -78,14 +79,3 @@ The script will:
 6. Show confusion matrix heatmaps for model evaluation
 7. Display feature importance rankings
 8. Generate a bar chart showing the top 8 most important features
-
-## Results
-
-The program outputs:
-
-- **Accuracy scores** for both Random Forest and LightGBM classifiers
-- **Confusion matrices** as heatmaps to visualize prediction performance
-- **Feature importance analysis** showing which factors most strongly predict stress levels
-- **Visualization plots** for better understanding of model performance and feature relationships
-
-This analysis helps identify the key factors that contribute to student stress and provides insights for developing targeted interventions to support student well-being.
