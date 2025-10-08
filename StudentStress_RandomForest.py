@@ -6,6 +6,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 from lightgbm import LGBMClassifier
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 def evaluate(y_test, y_pred):
     # Get class labels for confusion matrix
@@ -81,4 +82,5 @@ plt.bar(range(top_n), importances[top_indices], align='center')
 plt.xticks(range(top_n), feature_names[top_indices], rotation=45)
 plt.tight_layout()
 plt.show()
+
 
