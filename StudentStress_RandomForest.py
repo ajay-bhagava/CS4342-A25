@@ -42,11 +42,15 @@ def evaluate(y_test, y_pred, model_name):
     accuracy = accuracy_score(y_test, y_pred)
     print(f'Accuracy: {accuracy * 100:.2f}%')
 
-    precision = precision_score(y_test, y_pred, average='weighted')
-    print(f'Precision: {precision * 100:.2f}%')
+    precision = precision_score(y_test, y_pred, average=None)
+    print(f'Precision: {precision * 100}')
+    weighted_precision = precision_score(y_test, y_pred, average='weighted')
+    print(f'Weighted Precision: {weighted_precision * 100:.2f}%')
 
-    recall = recall_score(y_test, y_pred, average='weighted')
-    print(f'Recall: {recall * 100:.2f}%')
+    recall = recall_score(y_test, y_pred, average=None)
+    print(f'Recall: {recall * 100}')
+    weighted_recall = recall_score(y_test, y_pred, average='weighted')
+    print(f'Weighted recall: {weighted_recall * 100:.2f}%')
 
     # Get confusion matrix and plot
     conf_matrix = confusion_matrix(y_test, y_pred, labels=class_labels)
